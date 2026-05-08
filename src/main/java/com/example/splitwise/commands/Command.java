@@ -1,6 +1,8 @@
-package commands;
+package com.example.splitwise.commands;
 
 public interface Command {
 
-    match
+    boolean matches(String input);
+
+    void execute(String input);
 }
