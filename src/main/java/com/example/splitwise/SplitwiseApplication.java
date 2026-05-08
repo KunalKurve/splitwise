@@ -3,6 +3,7 @@ package com.example.splitwise;
 import com.example.splitwise.commands.CommandExecutor;
 import com.example.splitwise.commands.RegisterUser;
 import com.example.splitwise.commands.SettleUp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,9 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class SplitwiseApplication implements CommandLineRunner {
+
+	@Autowired
+	CommandExecutor commandExecutor;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SplitwiseApplication.class, args);
@@ -36,10 +40,10 @@ public class SplitwiseApplication implements CommandLineRunner {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter the command");
 		String input = scanner.next();
-		CommandExecutor commandExecutor = new CommandExecutor(
-//				new RegisterUser(),
-//				new SettleUp()
-		);
+//		CommandExecutor commandExecutor = new CommandExecutor(
+////				new RegisterUser(),
+////				new SettleUp()
+//		);
 		commandExecutor.addCommand(new RegisterUser());
 		commandExecutor.addCommand(new SettleUp());
 		commandExecutor.execute(input);
