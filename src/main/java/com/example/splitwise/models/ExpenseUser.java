@@ -1,5 +1,6 @@
 package com.example.splitwise.models;
 
+import com.example.splitwise.models.enums.ExpenseType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,4 +25,7 @@ public class ExpenseUser {
 
     @Enumerated(value = EnumType.STRING)
     private Currency currency;
+
+    @Enumerated(value = EnumType.STRING)
+    private ExpenseType expenseType;
 }
