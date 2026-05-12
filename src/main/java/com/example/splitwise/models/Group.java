@@ -1,23 +1,29 @@
 package com.example.splitwise.models;
 
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-public class Group {
+@Getter
+@Setter
+@Entity(name = "groups")
+//can't name it group because SQL has a reserved keyword "group"
+public class Group extends BaseModel{
 
     @ManyToMany
     private List<User> members;
 
     @ManyToOne
+    @JoinColumn(name = "created_by_id")
     private User createdBy;
 
-    @OneToMany
+    @OneToMany(mappedBy = "group")
     private List<Expense> allExpenses;
 
-    @ManyToMany
+    @ManyToOne
+    @JoinColumn(name = "admin_id")
     private User admin;
 
 }
