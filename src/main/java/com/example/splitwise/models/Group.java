@@ -12,6 +12,9 @@ import java.util.List;
 //can't name it group because SQL has a reserved keyword "group"
 public class Group extends BaseModel{
 
+    private String description;
+    private String groupName;
+
     @ManyToMany
     private List<User> members;
 
