@@ -3,6 +3,7 @@ package com.example.splitwise.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
@@ -17,6 +18,11 @@ public class BaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
+    @CreatedDate
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @CreatedDate
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date updatedAt;
 }
