@@ -15,6 +15,10 @@ public class Group extends BaseModel{
     private String description;
     private String groupName;
 
+    /*
+    Relationship wale Attributes
+    */
+
     @ManyToMany
     private List<User> members;
 
