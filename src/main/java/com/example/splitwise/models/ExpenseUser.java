@@ -1,6 +1,7 @@
 package com.example.splitwise.models;
 
 import com.example.splitwise.models.enums.ExpenseType;
+import com.example.splitwise.models.enums.ExpenseUserType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,6 @@ public class ExpenseUser extends BaseModel{
     @Enumerated(value = EnumType.STRING)
     private Currency currency;
 
-    @Enumerated(value = EnumType.STRING)
-    private ExpenseType expenseType;
+    @Enumerated(value = EnumType.ORDINAL)
+    private ExpenseUserType expenseUserType;
 }

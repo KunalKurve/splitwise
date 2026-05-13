@@ -1,5 +1,6 @@
 package com.example.splitwise.models;
 
+import com.example.splitwise.models.enums.ExpenseType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,6 @@ public class Expense extends BaseModel{
     private String description;
 
     private double amount;
-
-    private Date addedAt;
 
     @ManyToOne
     @JoinColumn(name = "created_by_id")
@@ -34,5 +33,8 @@ public class Expense extends BaseModel{
      private Map<User, Double> receivers;
      private Map<User, Double> givers;
     */
+
+    @Enumerated(value = EnumType.ORDINAL)
+    private ExpenseType expenseType;
 }
 

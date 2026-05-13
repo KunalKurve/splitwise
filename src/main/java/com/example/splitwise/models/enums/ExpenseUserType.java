@@ -1,5 +1,5 @@
 package com.example.splitwise.models.enums;
 
-public enum ExpenseType {
-    NORMAL, PAYMENT
+public enum ExpenseUserType {
+    PAID, OWED
 }
