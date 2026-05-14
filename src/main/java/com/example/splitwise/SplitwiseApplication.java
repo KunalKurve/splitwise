@@ -1,8 +1,7 @@
 package com.example.splitwise;
 
 import com.example.splitwise.commands.CommandExecutor;
-import com.example.splitwise.commands.RegisterUser;
-import com.example.splitwise.commands.SettleUp;
+import com.example.splitwise.commands.SettleUpGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -41,18 +40,34 @@ public class SplitwiseApplication implements CommandLineRunner {
 			 CommandExecutor -  responsible for managing all commands.
 		*/
 
-        Scanner scanner = new Scanner(System.in);
-		System.out.println("Please enter the command");
-		String input = scanner.next();
-/*
-		CommandExecutor commandExecutor = new CommandExecutor(
-				new RegisterUser(),
-				new SettleUp()
-		);
-*/
-        commandExecutor.addCommand(new RegisterUser());
-		commandExecutor.addCommand(new SettleUp());
-		commandExecutor.execute(input);
+		while (true) {
+			Scanner scanner = new Scanner(System.in);
+			try {
+
+				System.out.println("Please enter the command");
+
+				String input = scanner.nextLine();
+
+				commandExecutor.execute(input);
+
+			} catch (Exception e) {
+				System.out.println("Error: " + e);
+			}
+
+
+			// Don't use scanner.next() because stops taking input after a space
+			// scanner.nextLine() stops taking input after Enter
+			/*
+			CommandExecutor commandExecutor = new CommandExecutor(
+					new RegisterUser(),
+					new SettleUp()
+			);
+			// or
+			commandExecutor.addCommand(new RegisterUser());
+			commandExecutor.addCommand(new SettleUpGroup()));
+			*/
+
+		}
 
 	}
 }
