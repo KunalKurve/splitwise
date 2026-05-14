@@ -1,16 +1,14 @@
 package com.example.splitwise.models;
 
-import com.example.splitwise.models.enums.ExpenseType;
+import com.example.splitwise.models.enums.Currency;
 import com.example.splitwise.models.enums.ExpenseUserType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Currency;
-
 @Getter
 @Setter
-@Entity(name = "expense_users")
+@Entity
 public class ExpenseUser extends BaseModel{
 
     @ManyToOne(fetch = FetchType.EAGER)

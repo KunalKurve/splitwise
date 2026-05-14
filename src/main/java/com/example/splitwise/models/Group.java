@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "groups")
+@Entity(name = "userGroups") // "groups" name did not create table
 //can't name it group because SQL has a reserved keyword "group"
 public class Group extends BaseModel{
 

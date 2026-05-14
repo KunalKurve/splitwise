@@ -10,7 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "expenses")
+@Entity // (name = "expenses") does NOT set table name. It sets: JPQL entity name
 public class Expense extends BaseModel{
 
     private String description;
