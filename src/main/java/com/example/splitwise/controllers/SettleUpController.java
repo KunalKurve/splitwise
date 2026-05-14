@@ -30,10 +30,10 @@ public class SettleUpController {
             );
             responseDto.setTransactions(transactions);
             responseDto.setResponseStatus(ResponseStatus.SUCCESS);
-            responseDto.setMessage("Group has been Settled!");
+            responseDto.setMessage("Suggested Transactions!");
         } catch (Exception e) {
             responseDto.setResponseStatus(ResponseStatus.FAILED);
-            responseDto.setMessage("Group couldn't be Settled!");
+            responseDto.setMessage("Something went wrong!");
         }
         return responseDto;
     }
