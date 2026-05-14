@@ -12,6 +12,17 @@ import java.util.List;
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
     List<Expense> findAllByGroup_Id(int groupId);
 
-    @Query("select e from Expense e where e.group is null and e.user.id = :userId")
+//    @Query("""
+//            SELECT e
+//            FROM Expense e
+//            WHERE e.group IS NULL
+//            AND e.createdBy.id = :userId
+//            """) - only fetches the non-group entries created by user
+    @Query("""
+        SELECT eu.expense
+        FROM ExpenseUser eu
+        WHERE eu.user.id = :userId
+        AND eu.expense.group IS NULL
+        """)
     List<Expense> findNonGroupExpensesForUser(@Param("userId") int userId);
 }
