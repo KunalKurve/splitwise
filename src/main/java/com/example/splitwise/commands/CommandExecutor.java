@@ -1,5 +1,6 @@
 package com.example.splitwise.commands;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,13 +11,16 @@ public class CommandExecutor {
 
     private List<Command> suppportedCommands;
 
+    @Autowired
     public CommandExecutor(
 //            RegisterUser registerUser,
-//            SettleUp settleUp
+            SettleUpUser settleUpUser,
+            SettleUpGroup settleUpGroup
     ){
         this.suppportedCommands = new ArrayList<>();
 //        this.suppportedCommands.add(registerUser);
-//        this.suppportedCommands.add(settleUp);
+        suppportedCommands.add(settleUpUser);
+        suppportedCommands.add(settleUpGroup);
     }
 
     public void addCommand(Command command){
