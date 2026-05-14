@@ -11,6 +11,8 @@ import com.example.splitwise.repositories.ExpenseUserRepository;
 import com.example.splitwise.repositories.GroupRepository;
 import com.example.splitwise.repositories.UserRepository;
 import com.example.splitwise.strategies.SettleUpStrategy;
+import com.example.splitwise.strategies.SettleUpStrategyFactory;
+import com.example.splitwise.strategies.TwoSetsSettleUpStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,6 @@ public class SettleUpService {
     private final UserRepository userRepository;
     private final GroupRepository groupRepository;
     private final ExpenseRepository expenseRepository;
-    private final ExpenseUserRepository expenseUserRepository;
     private final SettleUpStrategy settleUpStrategy;
 
     @Autowired
@@ -30,14 +31,12 @@ public class SettleUpService {
             UserRepository userRepository,
             GroupRepository groupRepository,
             ExpenseRepository expenseRepository,
-            ExpenseUserRepository expenseUserRepository,
             SettleUpStrategy settleUpStrategy
     ){
         this.userRepository = userRepository;
         this.groupRepository =  groupRepository;
         this.expenseRepository = expenseRepository;
-        this.expenseUserRepository = expenseUserRepository;
-        this.settleUpStrategy = settleUpStrategy;
+        this.settleUpStrategy = new TwoSetsSettleUpStrategy();
     }
 
     public List<Transaction> settleGroup(int groupId) throws InvalidGroupException {
