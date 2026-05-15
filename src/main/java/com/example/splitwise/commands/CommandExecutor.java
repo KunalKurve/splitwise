@@ -13,12 +13,21 @@ public class CommandExecutor {
 
     @Autowired
     public CommandExecutor(
-//            RegisterUser registerUser,
+            RegisterUser registerUser,
+            DeleteProfile deleteProfile,
+            CreateGroup createGroup,
+            DeleteGroup deleteGroup,
+            AddExpense addExpense,
             SettleUpUser settleUpUser,
             SettleUpGroup settleUpGroup
     ){
         this.suppportedCommands = new ArrayList<>();
-//        this.suppportedCommands.add(registerUser);
+        this.suppportedCommands.add(registerUser);
+        suppportedCommands.add(deleteProfile);
+        suppportedCommands.add(settleUpGroup);
+        suppportedCommands.add(createGroup);
+        suppportedCommands.add(deleteGroup);
+        suppportedCommands.add(addExpense);
         suppportedCommands.add(settleUpUser);
         suppportedCommands.add(settleUpGroup);
     }
