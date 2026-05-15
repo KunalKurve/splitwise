@@ -19,8 +19,10 @@ public class Group extends BaseModel{
     Relationship wale Attributes
     */
 
-    @ManyToMany
-    private List<User> members;
+    //@ManyToMany
+    //private List<User> members;
+    @OneToMany
+    List<GroupMember> members;
 
     @ManyToOne
     @JoinColumn(name = "created_by_id")
@@ -29,8 +31,10 @@ public class Group extends BaseModel{
     @OneToMany(mappedBy = "group")
     private List<Expense> allExpenses;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_id")
-    private User admin;
+    //@ManyToOne
+    //@JoinColumn(name = "admin_id")
+    //private User admin;
+    @OneToMany
+    private List<GroupAdmin> admins;
 
 }
