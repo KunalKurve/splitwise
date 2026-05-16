@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
+
     List<Expense> findAllByGroup_Id(int groupId);
 
 //    @Query("""
