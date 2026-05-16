@@ -64,7 +64,7 @@ public class ExpenseService {
         User createdBy = userRepository.findById(createdByUserId)
                 .orElseThrow(()-> new InvalidUserException("User not found"));
 
-        groupMemberRepository.findByGroupIdAndUserId(groupId, createdByUserId)
+        groupMemberRepository.findByGroupIdAndMemberId(groupId, createdByUserId)
                 .orElseThrow(()-> new UnAuthorizedAccessException("The user is not a part of group"));
 
         /*
@@ -105,7 +105,7 @@ public class ExpenseService {
 
             // User must belong to group
             groupMemberRepository
-                    .findByGroupIdAndUserId(groupId, userId)
+                    .findByGroupIdAndMemberId(groupId, userId)
                     .orElseThrow(() ->
                             new UnAuthorizedAccessException(
                                     "User is not part of group"
@@ -141,7 +141,7 @@ public class ExpenseService {
 
             // User must belong to group
             groupMemberRepository
-                    .findByGroupIdAndUserId(groupId, userId)
+                    .findByGroupIdAndMemberId(groupId, userId)
                     .orElseThrow(() ->
                             new UnAuthorizedAccessException(
                                     "User is not part of group"

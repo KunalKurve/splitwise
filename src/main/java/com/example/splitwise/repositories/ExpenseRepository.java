@@ -24,6 +24,6 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
         FROM ExpenseUser eu
         WHERE eu.user.id = :userId
         AND eu.expense.group IS NULL
-        """)
+        """) // includes entries while involve user
     List<Expense> findNonGroupExpensesForUser(@Param("userId") int userId);
 }
