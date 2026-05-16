@@ -2,9 +2,9 @@ package com.example.splitwise.strategies;
 
 import com.example.splitwise.models.enums.SplitType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class SplitStrategyFactory {
 
     private final EqualSplitStrategy equalSplitStrategy;
