@@ -1,0 +1,79 @@
+# -----------------------------
+# Fetch members test
+# -----------------------------
+
+FetchAllMembers 100 100
+
+
+# -----------------------------
+# Add new user
+# -----------------------------
+
+RegisterUser Saurabh pass123 9999999995
+
+
+# -----------------------------
+# Add member to existing group
+# GroupId=100
+# Admin=100
+# User=104
+# -----------------------------
+
+AddMember 100 100 104
+
+
+# Verify member added
+FetchAllMembers 100 100
+
+
+# -----------------------------
+# Add personal expense
+# UserId=100
+# -----------------------------
+
+AddUserExpense 100 500
+
+
+# -----------------------------
+# Add group expense
+#
+# Group=100
+# CreatedBy=100
+# Description=Snacks
+# Split=EQUAL
+# Amount=1200
+#
+# Kunal paid full amount
+# Each owes 300
+# -----------------------------
+
+AddGroupExpense 100 Lunch 2000 EQUAL 100:2000 100,101,102,103
+
+AddGroupExpense 100 Hotel 4000 EQUAL 101:4000 100,101,102,103
+
+AddGroupExpense 100 Taxi 1000 EQUAL 102:1000 100,101,102,103
+
+
+# -----------------------------
+# Group settle
+# -----------------------------
+
+SettleUpGroup 100 TWO_SETS
+
+
+# -----------------------------
+# User settle
+# -----------------------------
+
+SettleUpUser 100 TWO_SETS
+
+
+# -----------------------------
+# Remove member
+# -----------------------------
+
+RemoveMember 100 100 104
+
+
+# Verify removal
+FetchAllMembers 100 100

@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -23,6 +25,26 @@ public class SplitwiseApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		Files.lines(Paths.get("src/main/resources/test_commands.txt"))
+				.filter(line -> !line.isBlank())
+				.filter(line -> !line.startsWith("#"))
+				.forEach(command -> {
+					try{
+						System.out.println("\nExecuting: " + command);
+
+						commandExecutor.execute(command);
+
+					}
+					catch(Exception e){
+
+						System.out.println(
+								"FAILED -> " + command
+						);
+
+						e.printStackTrace();
+					}
+				});
 
 		/*
  			Console based application or Menu based Application
@@ -40,19 +62,31 @@ public class SplitwiseApplication implements CommandLineRunner {
 			 CommandExecutor -  responsible for managing all commands.
 		*/
 
-		while (true) {
-			Scanner scanner = new Scanner(System.in);
-			try {
-
-				System.out.println("Please enter the command");
-
-				String input = scanner.nextLine();
-
-				commandExecutor.execute(input);
-
-			} catch (Exception e) {
-				System.out.println("Error: " + e);
-			}
+//		Scanner scanner = new Scanner(System.in);
+//
+//		while(true){
+//
+//			try{
+//
+//				System.out.print("\nEnter command: ");
+//
+//				String input =
+//						scanner.nextLine();
+//
+//				if(input.equalsIgnoreCase("exit")){
+//					break;
+//				}
+//
+//				commandExecutor.execute(input);
+//
+//			}
+//            catch(Exception e){
+//				System.out.println(e.getMessage());
+//			}
+//		}
+//
+//        scanner.close();
+	}
 
 
 			// Don't use scanner.next() because stops taking input after a space
@@ -67,7 +101,4 @@ public class SplitwiseApplication implements CommandLineRunner {
 			commandExecutor.addCommand(new SettleUpGroup()));
 			*/
 
-		}
-
-	}
 }
