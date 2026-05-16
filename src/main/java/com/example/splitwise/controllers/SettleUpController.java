@@ -26,7 +26,8 @@ public class SettleUpController {
         SettleGroupResponseDto responseDto = new SettleGroupResponseDto();
         try{
             List<Transaction> transactions = settleUpService.settleGroup(
-                    requestDto.getGroupId()
+                    requestDto.getGroupId(),
+                    requestDto.getSettleUpStrategyType()
             );
             responseDto.setTransactions(transactions);
             responseDto.setResponseStatus(ResponseStatus.SUCCESS);
@@ -42,7 +43,8 @@ public class SettleUpController {
         SettleUserResponseDto responseDto = new SettleUserResponseDto();
         try{
             List<Transaction> transactions = settleUpService.settleUser(
-                    requestDto.getUserId()
+                    requestDto.getUserId(),
+                    requestDto.getSettleUpStrategyType()
             );
             responseDto.setTransactions(transactions);
             responseDto.setResponseStatus(ResponseStatus.SUCCESS);

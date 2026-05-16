@@ -6,6 +6,7 @@ import com.example.splitwise.exceptions.InvalidUserException;
 import com.example.splitwise.models.Expense;
 import com.example.splitwise.models.Group;
 import com.example.splitwise.models.User;
+import com.example.splitwise.models.enums.SettleUpStrategyType;
 import com.example.splitwise.repositories.ExpenseRepository;
 import com.example.splitwise.repositories.ExpenseUserRepository;
 import com.example.splitwise.repositories.GroupRepository;
@@ -24,37 +25,41 @@ public class SettleUpService {
     private final UserRepository userRepository;
     private final GroupRepository groupRepository;
     private final ExpenseRepository expenseRepository;
-    private final SettleUpStrategy settleUpStrategy;
+    private final SettleUpStrategyFactory settleUpStrategyFactory;
 
     @Autowired
     public SettleUpService(
             UserRepository userRepository,
             GroupRepository groupRepository,
             ExpenseRepository expenseRepository,
-            SettleUpStrategy settleUpStrategy
+            SettleUpStrategyFactory settleUpStrategyFactory
     ){
         this.userRepository = userRepository;
         this.groupRepository =  groupRepository;
         this.expenseRepository = expenseRepository;
-        this.settleUpStrategy = new TwoSetsSettleUpStrategy();
+        this.settleUpStrategyFactory = settleUpStrategyFactory;
     }
 
-    public List<Transaction> settleGroup(int groupId) throws InvalidGroupException {
+    public List<Transaction> settleGroup(int groupId, SettleUpStrategyType settleUpStrategyType) throws InvalidGroupException {
 
         Group group = groupRepository.findById(groupId)
                 .orElseThrow(()-> new InvalidGroupException("Group not found"));
 
         List<Expense> expenses = expenseRepository.findAllByGroup_Id(group.getId());
 
+        SettleUpStrategy settleUpStrategy = settleUpStrategyFactory.getSettleUpStrategy(settleUpStrategyType);
+
         return settleUpStrategy.settleUp(expenses);
     }
 
-    public List<Transaction> settleUser(int userId) throws InvalidUserException {
+    public List<Transaction> settleUser(int userId, SettleUpStrategyType settleUpStrategyType) throws InvalidUserException {
 
         User user = userRepository.findById(userId)
                 .orElseThrow(()-> new InvalidUserException("User not found"));
 
         List<Expense> expenses = expenseRepository.findNonGroupExpensesForUser(user.getId());
+
+        SettleUpStrategy settleUpStrategy = settleUpStrategyFactory.getSettleUpStrategy(settleUpStrategyType);
 
         return settleUpStrategy.settleUp(expenses);
     }

@@ -1,15 +1,32 @@
 package com.example.splitwise.strategies;
 
+import com.example.splitwise.models.enums.SettleUpStrategyType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class SettleUpStrategyFactory {
 
-    public static SettleUpStrategy getSettleUpStrategy(String strategyName){
+    private final PlusMinusSettleUpStrategy plusMinusSettleUpStrategy;
+    private final TwoSetsSettleUpStrategy twoSetsSettleUpStrategy;
 
-        if(strategyName.equalsIgnoreCase("PlusMinus")){
-            return new PlusMinusSettleUpStrategy();
-        }
-        else if(strategyName.equalsIgnoreCase("TwoSets")){
-            return new TwoSetsSettleUpStrategy();
-        }
-        return null;
+    @Autowired
+    public SettleUpStrategyFactory(
+            PlusMinusSettleUpStrategy plusMinusSettleUpStrategy,
+            TwoSetsSettleUpStrategy twoSetsSettleUpStrategy
+    ){
+        this.plusMinusSettleUpStrategy = plusMinusSettleUpStrategy;
+        this.twoSetsSettleUpStrategy = twoSetsSettleUpStrategy;
+    }
+
+
+    public SettleUpStrategy getSettleUpStrategy(SettleUpStrategyType settleUpStrategyType){
+
+        return switch (settleUpStrategyType) {
+
+            case PLUS_MINUS -> plusMinusSettleUpStrategy;
+
+            case TWO_SETS -> twoSetsSettleUpStrategy;
+        };
     }
 }
