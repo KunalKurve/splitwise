@@ -107,7 +107,7 @@ public class GroupService {
         User memberToBeAdded = userRepository.findById(memberToBeAddedUserId)
                 .orElseThrow(()-> new InvalidUserException("User not found"));
 
-        Optional<GroupMember> optionalGroupMember = groupMemberRepository.findByGroupIdAndUserId(groupId, memberToBeAddedUserId);
+        Optional<GroupMember> optionalGroupMember = groupMemberRepository.findByGroupIdAndMemberId(groupId, memberToBeAddedUserId);
         if(optionalGroupMember.isPresent()){
             throw new InvalidUserException("The user is already a Group member");
         }
@@ -132,7 +132,7 @@ public class GroupService {
         User memberToBeRemoved = userRepository.findById(memberId)
                 .orElseThrow(()-> new InvalidUserException("User not found"));
 
-        Optional<GroupMember> optionalGroupMember = groupMemberRepository.findByGroupIdAndUserId(groupId, memberId);
+        Optional<GroupMember> optionalGroupMember = groupMemberRepository.findByGroupIdAndMemberId(groupId, memberId);
         if(optionalGroupMember.isEmpty()){
             throw new InvalidUserException("The Given user is not a member of the group");
         }
@@ -148,7 +148,7 @@ public class GroupService {
         userRepository.findById(userId)
                 .orElseThrow(()-> new InvalidUserException("User not found"));
 
-        Optional<GroupMember> groupMemberOptional = groupMemberRepository.findByGroupIdAndUserId(groupId, userId);
+        Optional<GroupMember> groupMemberOptional = groupMemberRepository.findByGroupIdAndMemberId(groupId, userId);
 
         Optional<GroupAdmin> groupAdminOptional = groupAdminRepository.findByGroupIdAndAdminId(groupId, userId);
 

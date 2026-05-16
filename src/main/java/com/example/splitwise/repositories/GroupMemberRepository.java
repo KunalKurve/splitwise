@@ -9,9 +9,10 @@ import java.util.Optional;
 
 @Repository
 public interface GroupMemberRepository extends JpaRepository<GroupMember, Integer> {
+
     void deleteByGroupId(int groupId);
 
-    Optional<GroupMember> findByGroupIdAndUserId(int groupId, int memberToBeAddedUserId);
+    Optional<GroupMember> findByGroupIdAndMemberId(int groupId, int memberToBeAddedUserId);
 
     List<GroupMember> findAllByGroupId(int groupId);
 }

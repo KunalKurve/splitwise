@@ -4,6 +4,7 @@ import com.example.splitwise.dtos.requests.*;
 import com.example.splitwise.dtos.responses.*;
 import com.example.splitwise.models.Group;
 import com.example.splitwise.models.GroupMember;
+import com.example.splitwise.models.User;
 import com.example.splitwise.services.GroupService;
 import com.example.splitwise.services.SettleUpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,41 @@ public class GroupController {
         } catch (Exception e) {
             responseDto.setResponseStatus(ResponseStatus.FAILED);
         }
+        return responseDto;
+    }
+
+    public FetchAllMembersResponseDto fetchAllMembers(
+            FetchAllMembersRequestDto requestDto){
+
+        FetchAllMembersResponseDto responseDto =
+                new FetchAllMembersResponseDto();
+
+        try {
+
+            List<User> users = groupService.fetchAllMembers(
+                    requestDto.getGroupId(),
+                    requestDto.getUserId()
+            );
+
+            List<MemberDto> memberDtos = users.stream()
+                    .map(user -> {
+                        MemberDto dto = new MemberDto();
+                        dto.setId(user.getId());
+                        dto.setName(user.getName());
+                        dto.setPhone(user.getPhone());
+
+                        return dto;
+                    })
+                    .toList();
+
+            responseDto.setMembers(memberDtos);
+            responseDto.setResponseStatus(ResponseStatus.SUCCESS);
+
+        }
+        catch (Exception e) {
+            responseDto.setResponseStatus(ResponseStatus.FAILED);
+        }
+
         return responseDto;
     }
 }
