@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class GroupMember {
+public class GroupMember extends BaseModel{
 
     @ManyToOne
     private Group group;
