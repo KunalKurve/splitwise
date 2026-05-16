@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class GroupAdmin {
+public class GroupAdmin extends BaseModel{
 
     @ManyToOne
     private Group group;
