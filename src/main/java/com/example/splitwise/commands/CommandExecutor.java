@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class CommandExecutor {
 
-    private List<Command> suppportedCommands;
+    private List<Command> supportedCommands;
 
     @Autowired
     public CommandExecutor(
@@ -20,30 +20,36 @@ public class CommandExecutor {
             AddUserExpense addUserExpense,
             AddGroupExpense addGroupExpense,
             SettleUpUser settleUpUser,
-            SettleUpGroup settleUpGroup
+            SettleUpGroup settleUpGroup,
+            FetchAllMembers fetchAllMembers,
+            AddMember addMember,
+            RemoveMember removeMember
     ){
-        this.suppportedCommands = new ArrayList<>();
-        this.suppportedCommands.add(registerUser);
-        suppportedCommands.add(deleteProfile);
-        suppportedCommands.add(settleUpGroup);
-        suppportedCommands.add(createGroup);
-        suppportedCommands.add(deleteGroup);
-        suppportedCommands.add(addUserExpense);
-        suppportedCommands.add(addGroupExpense);
-        suppportedCommands.add(settleUpUser);
-        suppportedCommands.add(settleUpGroup);
+        this.supportedCommands = new ArrayList<>();
+        this.supportedCommands.add(registerUser);
+        supportedCommands.add(deleteProfile);
+        supportedCommands.add(settleUpGroup);
+        supportedCommands.add(createGroup);
+        supportedCommands.add(deleteGroup);
+        supportedCommands.add(addUserExpense);
+        supportedCommands.add(addGroupExpense);
+        supportedCommands.add(settleUpUser);
+        supportedCommands.add(settleUpGroup);
+        supportedCommands.add(fetchAllMembers);
+        supportedCommands.add(addMember);
+        supportedCommands.add(removeMember);
     }
 
     public void addCommand(Command command){
-        this.suppportedCommands.add(command);
+        this.supportedCommands.add(command);
     }
 
     public void removeCommand(Command command){
-        this.suppportedCommands.remove(command);
+        this.supportedCommands.remove(command);
     }
 
     public void execute(String input){
-        for(Command command : suppportedCommands){
+        for(Command command : supportedCommands){
             if(command.matches(input)) {
                 command.execute(input);
             }
