@@ -8,7 +8,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "userGroups") // "groups" name did not create table
+@Entity
+@Table(name = "user_groups")
+// @Entity(name = "userGroups") can name sql table name differently therefore use @Table
+// "groups" name did not create table
 //can't name it group because SQL has a reserved keyword "group"
 public class Group extends BaseModel{
 
