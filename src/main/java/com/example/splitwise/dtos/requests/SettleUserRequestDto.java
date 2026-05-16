@@ -1,5 +1,6 @@
 package com.example.splitwise.dtos.requests;
 
+import com.example.splitwise.models.enums.SettleUpStrategyType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,4 +9,5 @@ import lombok.Setter;
 public class SettleUserRequestDto {
 
     private int userId;
+    private SettleUpStrategyType settleUpStrategyType;
 }
