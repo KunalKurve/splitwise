@@ -1,11 +1,9 @@
 package com.example.splitwise.controllers;
 
-import com.example.splitwise.dtos.requests.CreateGroupRequestDto;
-import com.example.splitwise.dtos.requests.DeleteGroupRequestDto;
-import com.example.splitwise.dtos.requests.SettleGroupRequestDto;
-import com.example.splitwise.dtos.requests.SettleUserRequestDto;
+import com.example.splitwise.dtos.requests.*;
 import com.example.splitwise.dtos.responses.*;
 import com.example.splitwise.models.Group;
+import com.example.splitwise.models.GroupMember;
 import com.example.splitwise.services.GroupService;
 import com.example.splitwise.services.SettleUpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,6 @@ public class GroupController {
                     requestDto.getUserId()
             );
             responseDto.setGroupId(group.getId());
-            responseDto.setAdminId(group.getAdmin().getId());
             responseDto.setResponseStatus(ResponseStatus.SUCCESS);
 
         } catch (Exception e) {
@@ -50,6 +47,37 @@ public class GroupController {
             );
             responseDto.setResponseStatus(ResponseStatus.SUCCESS);
 
+        } catch (Exception e) {
+            responseDto.setResponseStatus(ResponseStatus.FAILED);
+        }
+        return responseDto;
+    }
+
+    public AddMemberResponseDto addMember(AddMemberRequestDto requestDto){
+        AddMemberResponseDto responseDto = new AddMemberResponseDto();
+        try{
+            GroupMember groupMember = groupService.addMember(
+                    requestDto.getGroupId(),
+                    requestDto.getAdminId(),
+                    requestDto.getMemberToBeAddedUserId()
+            );
+            responseDto.setGroupMemberId(groupMember.getId());
+            responseDto.setResponseStatus(ResponseStatus.SUCCESS);
+        } catch (Exception e) {
+            responseDto.setResponseStatus(ResponseStatus.FAILED);
+        }
+        return responseDto;
+    }
+
+    public RemoveMemberResponseDto removeMember(RemoveMemberRequestDto requestDto){
+        RemoveMemberResponseDto responseDto = new RemoveMemberResponseDto();
+        try{
+            groupService.removeMember(
+                    requestDto.getGroupId(),
+                    requestDto.getAdminId(),
+                    requestDto.getMemberId()
+            );
+            responseDto.setResponseStatus(ResponseStatus.SUCCESS);
         } catch (Exception e) {
             responseDto.setResponseStatus(ResponseStatus.FAILED);
         }
