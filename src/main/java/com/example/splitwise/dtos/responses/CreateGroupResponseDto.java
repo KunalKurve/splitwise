@@ -9,5 +9,4 @@ public class CreateGroupResponseDto {
 
     private ResponseStatus responseStatus;
     private int groupId;
-    private int adminId;
 }
