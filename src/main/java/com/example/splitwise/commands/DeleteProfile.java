@@ -37,7 +37,7 @@ public class DeleteProfile implements Command{
             DeleteProfileRequestDto requestDto = new DeleteProfileRequestDto();
             requestDto.setUserId(userId);
 
-            DeleteProfileResponseDto responseDto = new DeleteProfileResponseDto();
+            DeleteProfileResponseDto responseDto = userController.deleteProfile(requestDto);
             System.out.println(responseDto.getResponseStatus());
         } catch (NumberFormatException e) {
             throw new RuntimeException("Something went Wrong !");
