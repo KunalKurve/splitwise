@@ -21,7 +21,7 @@ public class Group extends BaseModel{
 
     //@ManyToMany
     //private List<User> members;
-    @OneToMany
+    @OneToMany(mappedBy = "group",cascade = CascadeType.ALL)
     List<GroupMember> members;
 
     @ManyToOne
@@ -34,7 +34,7 @@ public class Group extends BaseModel{
     //@ManyToOne
     //@JoinColumn(name = "admin_id")
     //private User admin;
-    @OneToMany
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<GroupAdmin> admins;
 
 }
