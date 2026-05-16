@@ -1,13 +1,13 @@
 package com.example.splitwise.strategies;
 
 import com.example.splitwise.dtos.requests.SplitRequestDto;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Component
 public class EqualSplitStrategy implements SplitStrategy{
 
 
