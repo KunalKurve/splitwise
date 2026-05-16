@@ -34,7 +34,7 @@ public class Expense extends BaseModel{
      private Map<User, Double> givers;
     */
 
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ExpenseType expenseType;
 }
 

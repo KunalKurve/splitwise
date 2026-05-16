@@ -22,6 +22,6 @@ public class ExpenseUser extends BaseModel{
     @Enumerated(value = EnumType.STRING)
     private Currency currency;
 
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ExpenseUserType expenseUserType;
 }
