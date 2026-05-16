@@ -35,6 +35,11 @@ public class AddGroupExpense implements Command {
         try {
 
             String[] commandFragments = input.split(" ");
+            if(commandFragments.length != 7){
+                throw new IllegalArgumentException(
+                        "Usage: AddGroupExpense groupId description amount splitType paidBy participants"
+                );
+            }
 
             /*
              Command Format:
