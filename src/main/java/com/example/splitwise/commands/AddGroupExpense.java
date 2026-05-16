@@ -7,10 +7,12 @@ import com.example.splitwise.dtos.requests.SplitRequestDto;
 import com.example.splitwise.dtos.responses.AddGroupExpenseResponseDto;
 import com.example.splitwise.models.enums.SplitType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AddGroupExpense implements Command {
 
     private final ExpenseController expenseController;
