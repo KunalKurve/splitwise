@@ -25,7 +25,7 @@ public class SplitwiseApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		/*
- 			Console bases application or Menu based Application
+ 			Console based application or Menu based Application
 				String input = "register email password";
 				String[] words = input.split(" ");
 				if(words[0].equalsIgnoreCase("register")){
@@ -34,7 +34,7 @@ public class SplitwiseApplication implements CommandLineRunner {
 					//expenseController.addExpense(words[1])
 				}
 			 Not good design because main function - SRP and OCP is getting violated.
-			 checking and executing both are taken care by main
+			 checking and executing both are taken care by main method class
 			 which it should not be doing.
 			 Command Design is better
 			 CommandExecutor -  responsible for managing all commands.
