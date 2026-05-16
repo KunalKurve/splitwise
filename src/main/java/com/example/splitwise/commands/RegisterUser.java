@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class RegisterUser implements Command{
 
     private final UserController userController;
-    private final String COMMAND_NAME = "Register";
+    private final String COMMAND_NAME = "RegisterUser";
 
     @Autowired
     public RegisterUser(UserController userController){
