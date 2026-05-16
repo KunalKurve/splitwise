@@ -33,6 +33,7 @@ public class CreateGroup implements Command{
             String groupName = commandFragments[1];
             String description = commandFragments[2];
             int userId = Integer.parseInt(commandFragments[3]);
+
             CreateGroupRequestDto requestDto = new CreateGroupRequestDto();
             requestDto.setGroupName(groupName);
             requestDto.setDescription(description);
@@ -40,7 +41,6 @@ public class CreateGroup implements Command{
 
             CreateGroupResponseDto responseDto = groupController.createGroup(requestDto);
             System.out.println(responseDto.getGroupId());
-            System.out.println(responseDto.getAdminId());
             System.out.println(responseDto.getResponseStatus());
         } catch (NumberFormatException e) {
             throw new RuntimeException("Something went Wrong !");
