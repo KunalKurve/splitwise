@@ -17,7 +17,8 @@ public class CommandExecutor {
             DeleteProfile deleteProfile,
             CreateGroup createGroup,
             DeleteGroup deleteGroup,
-            AddExpense addExpense,
+            AddUserExpense addUserExpense,
+            AddGroupExpense addGroupExpense,
             SettleUpUser settleUpUser,
             SettleUpGroup settleUpGroup
     ){
@@ -27,7 +28,8 @@ public class CommandExecutor {
         suppportedCommands.add(settleUpGroup);
         suppportedCommands.add(createGroup);
         suppportedCommands.add(deleteGroup);
-        suppportedCommands.add(addExpense);
+        suppportedCommands.add(addUserExpense);
+        suppportedCommands.add(addGroupExpense);
         suppportedCommands.add(settleUpUser);
         suppportedCommands.add(settleUpGroup);
     }
